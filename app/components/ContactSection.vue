@@ -25,11 +25,11 @@
               </svg>
             </div>
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Email</h3>
-            <p class="text-gray-600 dark:text-gray-400">your.email@example.com</p>
+            <p class="text-gray-600 dark:text-gray-400">wjay.inclino@gmail.com</p>
           </a>
 
           <a 
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/william-jay-inclino-02140022a/"
             target="_blank"
             class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all text-center"
           >
@@ -43,7 +43,7 @@
           </a>
 
           <a 
-            href="https://github.com"
+            href="https://github.com/William-Jay-Inclino"
             target="_blank"
             class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all text-center"
           >
@@ -107,6 +107,8 @@
 </template>
 
 <script setup lang="ts">
+import { showSuccessAlert, showErrorAlert } from '~/utils/swal'
+
 interface FormData {
   name: string
   email: string
@@ -124,17 +126,37 @@ const isSubmitting = ref<boolean>(false)
 const handleSubmit = async (): Promise<void> => {
   isSubmitting.value = true
   
-  // Simulate form submission
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  
-  alert('Thank you for your message! I\'ll get back to you soon.')
-  
-  form.value = {
-    name: '',
-    email: '',
-    message: ''
+  try {
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: {
+        name: form.value.name,
+        email: form.value.email,
+        message: form.value.message
+      }
+    })
+    
+    // Show success message
+    showSuccessAlert({
+      title: 'Message Sent!',
+      text: 'Thank you for reaching out! I will get back to you as soon as possible.'
+    })
+    
+    // Clear form
+    form.value = {
+      name: '',
+      email: '',
+      message: ''
+    }
+  } catch (error: any) {
+    const errorMessage = error.data?.statusMessage || 'Something went wrong. Please try emailing me directly at wjay.inclino@gmail.com'
+    
+    showErrorAlert({
+      title: 'Failed to Send',
+      text: errorMessage
+    })
+  } finally {
+    isSubmitting.value = false
   }
-  
-  isSubmitting.value = false
 }
 </script>

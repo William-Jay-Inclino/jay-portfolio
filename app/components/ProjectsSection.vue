@@ -61,52 +61,44 @@
 <script setup lang="ts">
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured online shopping platform with payment integration, admin dashboard, and real-time inventory management.',
-    technologies: ['Vue.js', 'Node.js', 'PostgreSQL', 'Stripe'],
+    title: 'JayTech POS',
+    description: 'Store management app for small to medium-sized retail businesses in the Philippines.',
+    technologies: ['Laravel', 'Vue.js', 'PostgreSQL', 'Inertia.js', 'Tailwind CSS', 'Nginx', 'Docker', 'Linux'],
     gradient: 'from-purple-500 to-pink-500',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    github: 'https://github.com/William-Jay-Inclino/jaytechpos',
+    demo: 'https://jaytechsolutions.cloud/'
   },
   {
-    title: 'Task Management App',
-    description: 'Collaborative task management tool with real-time updates, team features, and productivity analytics.',
-    technologies: ['React', 'TypeScript', 'Firebase', 'Tailwind'],
-    gradient: 'from-blue-500 to-cyan-500',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
-  },
-  {
-    title: 'Weather Dashboard',
-    description: 'Beautiful weather application with forecasts, interactive maps, and location-based recommendations.',
-    technologies: ['Nuxt.js', 'OpenWeather API', 'Chart.js'],
+    title: 'PRISM Leyeco V',
+    description: 'Internal system for electric cooperative in Ormoc City, Leyte to manage their procurement process, warehouse & inventory, complaint & work order management, and fleet management.',
+    technologies: ['Javascript', 'TypeScript', 'Vue.js', 'Nuxt.js', 'NodeJs', 'NestJS', 'PostgreSQL', 'Nginx', 'Docker', 'Linux', 'Playwright', 'GraphQL', 'Bootstrap'],
     gradient: 'from-orange-500 to-yellow-500',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    github: 'https://github.com/William-Jay-Inclino/lvis-monorepo',
+    demo: 'http://120.28.62.117/'
   },
   {
-    title: 'Social Media Analytics',
-    description: 'Analytics dashboard for social media insights with data visualization and reporting features.',
-    technologies: ['Next.js', 'GraphQL', 'MongoDB', 'D3.js'],
+    title: 'CDRRMO Ormoc',
+    description: 'Internal system and website for Ormoc City Disaster Risk Reduction and Management Office to manage disaster response, resources, and reporting.',
+    technologies: ['Javascript', 'TypeScript', 'Vue.js', 'NodeJs', 'NestJS', 'PostgreSQL', 'Bootstrap', 'Nginx', 'Docker', 'Linux', 'Cypress', 'Swagger', 'REST APIs', 'Bulma CSS'],
     gradient: 'from-green-500 to-teal-500',
-    github: 'https://github.com',
-    demo: null
+    github: 'https://github.com/William-Jay-Inclino/cdrrmo-ormoc',
+    demo: 'https://www.cdrrmo.com/'
   },
   {
-    title: 'Blog Platform',
-    description: 'Modern blogging platform with markdown support, SEO optimization, and content management system.',
-    technologies: ['Nuxt.js', 'Strapi', 'PostgreSQL'],
+    title: 'Gymly PH',
+    description: 'A simple app for gym owners to manage members, track attendance, and view analytics.',
+    technologies: ['JavaScript', 'TypeScript', 'Vue.js', 'Nuxt.js', 'NestJS', 'Tailwind CSS', 'Nginx', 'PM2', 'Linux', 'REST APIs'],
+    gradient: 'from-blue-500 to-cyan-500',
+    github: 'https://github.com/William-Jay-Inclino/gymly',
+    demo: 'https://jaytechsolutions.cloud/gymly/'
+  },
+  {
+    title: 'Moneyflow',
+    description: 'Personal finance management app to help users track expenses/income, cash flow, and achieve financial goals.',
+    technologies: ['JavaScript', 'TypeScript', 'Vue.js', 'NodeJs', 'NestJS', 'Tailwind CSS', 'Nginx', 'PM2', 'Linux', 'REST APIs', 'PWA'],
     gradient: 'from-red-500 to-pink-500',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
+    github: 'https://github.com/William-Jay-Inclino/moneyflow',
+    demo: 'https://jaytechsolutions.cloud/moneyflow-pwa/'
   },
-  {
-    title: 'Portfolio Generator',
-    description: 'Tool to help developers create beautiful portfolios with customizable themes and templates.',
-    technologies: ['Vue.js', 'Tailwind CSS', 'Express'],
-    gradient: 'from-indigo-500 to-purple-500',
-    github: 'https://github.com',
-    demo: 'https://demo.com'
-  }
 ]
 </script>

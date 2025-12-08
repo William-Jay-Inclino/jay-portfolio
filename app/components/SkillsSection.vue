@@ -38,32 +38,32 @@ const skills = [
   {
     title: 'Frontend',
     icon: '🎨',
-    items: ['Vue.js', 'React', 'Nuxt.js', 'Next.js', 'TypeScript', 'Tailwind CSS']
+    items: ['JavaScript', 'TypeScript', 'Vue.js', 'Nuxt.js', 'Tailwind CSS', 'Bootstrap', 'Bulma', 'CSS3', 'HTML5', 'jQuery']
   },
   {
     title: 'Backend',
     icon: '⚙️',
-    items: ['Node.js', 'Express', 'NestJS', 'GraphQL', 'REST APIs', 'PostgreSQL']
+    items: ['Node.js', 'Express.js', 'NestJS', 'PHP', 'Laravel', 'CodeIgniter', 'REST APIs', 'GraphQL', 'PostgreSQL', 'MySQL', 'MariaDB']
   },
   {
     title: 'DevOps & Tools',
     icon: '🚀',
-    items: ['Git', 'Docker', 'AWS', 'CI/CD', 'Linux', 'Nginx']
+    items: ['Git', 'Docker', 'AWS', 'CI/CD', 'Linux', 'Nginx', 'Apache', 'PM2', 'Vercel', 'Github', 'Gitlab', 'Bitbucket']
   },
   {
     title: 'Mobile',
     icon: '📱',
-    items: ['React Native', 'Flutter', 'PWA', 'Responsive Design']
+    items: ['React Native', 'Progressive Web Apps', 'Responsive Design']
   },
   {
     title: 'Testing',
     icon: '🧪',
-    items: ['Jest', 'Vitest', 'Cypress', 'Testing Library', 'TDD']
+    items: ['Cypress', 'Playwright', 'Vitest', 'Pest', 'Postman', 'Insomnia']
   },
   {
     title: 'Other',
     icon: '💡',
-    items: ['Agile', 'Scrum', 'UI/UX', 'Problem Solving', 'Team Work']
+    items: ['Agile', 'Scrum', 'VS Code', 'Slack', 'Jira', 'Github Copilot', 'Figma', 'Draw.io', 'Microsoft Teams']
   }
 ]
 </script>

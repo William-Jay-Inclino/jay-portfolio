@@ -25,7 +25,7 @@
         </div>
         
         <p class="text-gray-400 text-sm">
-          © {{ new Date().getFullYear() }} Jay. Built with Nuxt.js & Tailwind CSS
+          © {{ new Date().getFullYear() }} William Jay Inclino. Built with Nuxt.js & Tailwind CSS
         </p>
       </div>
     </div>

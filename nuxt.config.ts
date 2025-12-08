@@ -24,5 +24,19 @@ export default defineNuxtConfig({
         server: {
             allowedHosts: ['jaytechsolutions.cloud']
         }
-    }
+    },
+	runtimeConfig: {
+		// Private keys (server-side only)
+		emailHost: process.env.EMAIL_HOST,
+		emailPort: process.env.EMAIL_PORT,
+		emailUser: process.env.EMAIL_USER,
+		emailPassword: process.env.EMAIL_PASSWORD,
+		emailTo: process.env.EMAIL_TO,
+		
+		// Public keys (exposed to client)
+		public: {
+			port: process.env.PORT || '3000',
+			timezone: process.env.TZ || 'UTC'
+		}
+	}
 })
