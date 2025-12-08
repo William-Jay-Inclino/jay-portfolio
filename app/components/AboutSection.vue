@@ -15,7 +15,7 @@
           
           <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
             Currently seeking opportunities to contribute to innovative projects and grow alongside talented teams. 
-            I'm particularly interested in roles that challenge me to learn new technologies and best practices.
+            I'm particularly interested in roles that challenge me to expand my technical skill set and apply industry best practices while also developing key soft skills like teamwork, adaptability, and leadership.
           </p>
           
           <div class="grid md:grid-cols-3 gap-6 mt-8">
