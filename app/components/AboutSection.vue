@@ -24,7 +24,7 @@
               <div class="text-gray-600 dark:text-gray-400">Years Experience</div>
             </div>
             <div class="text-center p-6 bg-white dark:bg-gray-700 rounded-xl shadow-md">
-              <div class="text-blue-600 dark:text-blue-500 text-4xl font-bold mb-2">5</div>
+              <div class="text-blue-600 dark:text-blue-500 text-4xl font-bold mb-2">10+</div>
               <div class="text-gray-600 dark:text-gray-400">Projects Completed</div>
             </div>
             <div class="text-center p-6 bg-white dark:bg-gray-700 rounded-xl shadow-md">
