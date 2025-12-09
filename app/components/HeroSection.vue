@@ -2,11 +2,6 @@
   <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors pt-20">
     <div class="container mx-auto px-6">
       <div class="text-center">
-        <div class="mb-8 animate-fade-in">
-          <div class="w-32 h-32 mx-auto bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white text-5xl font-bold shadow-2xl">
-            J
-          </div>
-        </div>
         
         <h1 class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-4 animate-slide-up">
           Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Jay</span>
