@@ -38,9 +38,21 @@ db.exec(`
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
+  CREATE TABLE IF NOT EXISTS user_clicks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    ip TEXT NOT NULL,
+    element TEXT NOT NULL,
+    page TEXT NOT NULL,
+    device TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
   CREATE INDEX IF NOT EXISTS idx_site_visits_date ON site_visits(date);
   CREATE INDEX IF NOT EXISTS idx_site_visits_ip ON site_visits(ip);
   CREATE INDEX IF NOT EXISTS idx_daily_stats_date ON daily_visit_stats(date);
+  CREATE INDEX IF NOT EXISTS idx_user_clicks_date ON user_clicks(date);
+  CREATE INDEX IF NOT EXISTS idx_user_clicks_element ON user_clicks(element);
 `)
 
 export interface SiteVisit {
@@ -57,6 +69,14 @@ export interface DailyVisitStats {
   mobile: number
   desktop: number
   tablet: number
+}
+
+export interface UserClick {
+  date: string
+  ip: string
+  element: string
+  page: string
+  device: string
 }
 
 export const analyticsDb = {
@@ -126,10 +146,10 @@ export const analyticsDb = {
   // Get all visits for a specific date
   getVisitsByDate: (date: string) => {
     return db.prepare(`
-      SELECT date, ip, device, referer, created_at
+      SELECT date, ip, device, referer
       FROM site_visits
       WHERE date = ?
-      ORDER BY created_at DESC
+      ORDER BY id DESC
     `).all(date)
   },
 
@@ -138,6 +158,25 @@ export const analyticsDb = {
     return db.prepare(`
       SELECT date, ip, device, referer
       FROM site_visits
+      WHERE date BETWEEN ? AND ?
+      ORDER BY date DESC, id DESC
+    `).all(startDate, endDate)
+  },
+
+  // Record a user click
+  recordClick: (click: UserClick) => {
+    const insertClick = db.prepare(`
+      INSERT INTO user_clicks (date, ip, element, page, device)
+      VALUES (?, ?, ?, ?, ?)
+    `)
+    insertClick.run(click.date, click.ip, click.element, click.page, click.device)
+  },
+
+  // Get all clicks for a date range
+  getClicksRange: (startDate: string, endDate: string) => {
+    return db.prepare(`
+      SELECT date, ip, element, page, device
+      FROM user_clicks
       WHERE date BETWEEN ? AND ?
       ORDER BY date DESC, id DESC
     `).all(startDate, endDate)

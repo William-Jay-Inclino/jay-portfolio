@@ -1,8 +1,17 @@
 <template>
-  <div class="min-h-screen bg-white dark:bg-gray-900 transition-colors pt-20">
+  <div class="min-h-screen bg-white dark:bg-gray-900 transition-colors">
     <div class="container mx-auto px-4 py-8 max-w-7xl">
-      <!-- Header -->
+      <!-- Header with Back Button -->
       <div class="mb-8">
+        <NuxtLink 
+          to="/" 
+          class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transition-colors mb-4"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Back to Home
+        </NuxtLink>
         <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Site Analytics
         </h1>
@@ -87,7 +96,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                <tr v-for="stat in stats" :key="stat.date" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <tr v-for="stat in paginatedStats" :key="stat.date" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                     {{ formatDate(stat.date) }}
                   </td>
@@ -109,6 +118,27 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <!-- Pagination -->
+          <div v-if="statsTotalPages > 1" class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <button
+              @click="statsPage--"
+              :disabled="statsPage === 1"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Previous
+            </button>
+            <span class="text-sm text-gray-700 dark:text-gray-300">
+              Page {{ statsPage }} of {{ statsTotalPages }}
+            </span>
+            <button
+              @click="statsPage++"
+              :disabled="statsPage === statsTotalPages"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Next
+            </button>
           </div>
 
           <!-- Summary Stats -->
@@ -167,7 +197,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                <tr v-for="(visit, index) in visits" :key="index" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <tr v-for="(visit, index) in paginatedVisits" :key="index" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                     {{ formatDate(visit.date) }}
                   </td>
@@ -185,6 +215,102 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <!-- Pagination -->
+          <div v-if="visitsTotalPages > 1" class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <button
+              @click="visitsPage--"
+              :disabled="visitsPage === 1"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Previous
+            </button>
+            <span class="text-sm text-gray-700 dark:text-gray-300">
+              Page {{ visitsPage }} of {{ visitsTotalPages }}
+            </span>
+            <button
+              @click="visitsPage++"
+              :disabled="visitsPage === visitsTotalPages"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+
+        <!-- User Clicks Table -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">User Clicks</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Interactive element tracking ({{ clicks.length }} total)</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead class="bg-gray-50 dark:bg-gray-900">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider whitespace-nowrap">
+                    Date
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider whitespace-nowrap">
+                    IP
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider whitespace-nowrap">
+                    Element
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider whitespace-nowrap">
+                    Page
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider whitespace-nowrap">
+                    Device
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                <tr v-for="(click, index) in paginatedClicks" :key="index" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                    {{ formatDate(click.date) }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 font-mono">
+                    {{ click.ip }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                    <span class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-xs font-medium">
+                      {{ click.element }}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    {{ click.page }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                    <span class="px-2 py-1 rounded-full text-xs font-medium" :class="getDeviceClass(click.device)">
+                      {{ click.device }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div v-if="clicksTotalPages > 1" class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+            <button
+              @click="clicksPage--"
+              :disabled="clicksPage === 1"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Previous
+            </button>
+            <span class="text-sm text-gray-700 dark:text-gray-300">
+              Page {{ clicksPage }} of {{ clicksTotalPages }}
+            </span>
+            <button
+              @click="clicksPage++"
+              :disabled="clicksPage === clicksTotalPages"
+              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
@@ -218,10 +344,25 @@ interface SiteVisit {
   referer: string | null
 }
 
+interface UserClick {
+  date: string
+  ip: string
+  element: string
+  page: string
+  device: string
+}
+
 const stats = ref<DailyStats[]>([])
 const visits = ref<SiteVisit[]>([])
+const clicks = ref<UserClick[]>([])
 const loading = ref(false)
 const error = ref('')
+
+// Pagination
+const statsPage = ref(1)
+const visitsPage = ref(1)
+const clicksPage = ref(1)
+const itemsPerPage = 10
 
 const today = new Date()
 const thirtyDaysAgo = new Date(today)
@@ -240,12 +381,38 @@ const totalStats = computed(() => {
   }), { total: 0, unique: 0, mobile: 0, desktop: 0, tablet: 0 })
 })
 
+// Paginated data
+const paginatedStats = computed(() => {
+  const start = (statsPage.value - 1) * itemsPerPage
+  return stats.value.slice(start, start + itemsPerPage)
+})
+
+const paginatedVisits = computed(() => {
+  const start = (visitsPage.value - 1) * itemsPerPage
+  return visits.value.slice(start, start + itemsPerPage)
+})
+
+const paginatedClicks = computed(() => {
+  const start = (clicksPage.value - 1) * itemsPerPage
+  return clicks.value.slice(start, start + itemsPerPage)
+})
+
+// Pagination helpers
+const statsTotalPages = computed(() => Math.ceil(stats.value.length / itemsPerPage))
+const visitsTotalPages = computed(() => Math.ceil(visits.value.length / itemsPerPage))
+const clicksTotalPages = computed(() => Math.ceil(clicks.value.length / itemsPerPage))
+
 const fetchData = async () => {
   loading.value = true
   error.value = ''
   
+  // Reset pagination
+  statsPage.value = 1
+  visitsPage.value = 1
+  clicksPage.value = 1
+  
   try {
-    const [statsResponse, visitsResponse] = await Promise.all([
+    const [statsResponse, visitsResponse, clicksResponse] = await Promise.all([
       $fetch(`/api/analytics/stats-range`, {
         method: 'GET',
         query: {
@@ -254,6 +421,13 @@ const fetchData = async () => {
         }
       }),
       $fetch(`/api/analytics/visits-range`, {
+        method: 'GET',
+        query: {
+          startDate: startDate.value,
+          endDate: endDate.value
+        }
+      }),
+      $fetch(`/api/analytics/clicks-range`, {
         method: 'GET',
         query: {
           startDate: startDate.value,
@@ -273,6 +447,12 @@ const fetchData = async () => {
       visits.value = visitsResponse.data ?? []
     } else {
       visits.value = []
+    }
+
+    if (clicksResponse.success && 'data' in clicksResponse) {
+      clicks.value = clicksResponse.data ?? []
+    } else {
+      clicks.value = []
     }
   } catch (e) {
     error.value = 'Failed to load analytics data'

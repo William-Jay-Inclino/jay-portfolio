@@ -7,13 +7,13 @@
         </a>
         
         <div class="hidden md:flex items-center space-x-8">
-          <a @click.prevent="scrollToSection('about')" href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">About</a>
-          <a @click.prevent="scrollToSection('skills')" href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Skills</a>
-          <a @click.prevent="scrollToSection('projects')" href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Projects</a>
-          <a @click.prevent="scrollToSection('contact')" href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Contact</a>
+          <a @click.prevent="scrollToSection('about'); trackClick('header_about')" href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">About</a>
+          <a @click.prevent="scrollToSection('skills'); trackClick('header_skills')" href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Skills</a>
+          <a @click.prevent="scrollToSection('projects'); trackClick('header_projects')" href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Projects</a>
+          <a @click.prevent="scrollToSection('contact'); trackClick('header_contact')" href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Contact</a>
           
           <button 
-            @click="toggleTheme" 
+            @click="handleThemeToggle" 
             class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             aria-label="Toggle theme"
           >
@@ -41,12 +41,12 @@
       <!-- Mobile Menu -->
       <div v-if="mobileMenuOpen" class="md:hidden pt-4 pb-2">
         <div class="flex flex-col space-y-3">
-          <a @click.prevent="scrollToSection('about'); mobileMenuOpen = false" href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">About</a>
-          <a @click.prevent="scrollToSection('skills'); mobileMenuOpen = false" href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Skills</a>
-          <a @click.prevent="scrollToSection('projects'); mobileMenuOpen = false" href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Projects</a>
-          <a @click.prevent="scrollToSection('contact'); mobileMenuOpen = false" href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Contact</a>
+          <a @click.prevent="scrollToSection('about'); trackClick('header_about'); mobileMenuOpen = false" href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">About</a>
+          <a @click.prevent="scrollToSection('skills'); trackClick('header_skills'); mobileMenuOpen = false" href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Skills</a>
+          <a @click.prevent="scrollToSection('projects'); trackClick('header_projects'); mobileMenuOpen = false" href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Projects</a>
+          <a @click.prevent="scrollToSection('contact'); trackClick('header_contact'); mobileMenuOpen = false" href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors cursor-pointer">Contact</a>
           <button 
-            @click="toggleTheme" 
+            @click="handleThemeToggle" 
             class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors"
           >
             <span>{{ colorMode === 'light' ? 'Dark' : 'Light' }} Mode</span>
@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
 const { colorMode, toggleTheme } = useTheme()
+const { trackClick } = useClickTracking()
 const mobileMenuOpen = ref(false)
 
 const scrollToSection = (sectionId: string) => {
@@ -66,5 +67,11 @@ const scrollToSection = (sectionId: string) => {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
+}
+
+const handleThemeToggle = () => {
+  const newMode = colorMode.value === 'light' ? 'dark' : 'light'
+  trackClick(`header_theme_${newMode}`)
+  toggleTheme()
 }
 </script>
