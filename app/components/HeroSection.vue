@@ -32,6 +32,8 @@
           >
             View Resume
           </button>
+        </div>
+        
         <div class="flex justify-center space-x-6 mt-12 animate-fade-in-delay">
           <a href="https://github.com/William-Jay-Inclino" target="_blank" @click="trackClick('hero_github')" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transform hover:scale-110 transition-all">
             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -49,7 +51,6 @@
             </svg>
           </a>
         </div>
-      </div>
       </div>
     </div>
     
