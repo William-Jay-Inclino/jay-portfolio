@@ -2,7 +2,8 @@ import Database from 'better-sqlite3'
 import { join } from 'path'
 import { existsSync, mkdirSync } from 'fs'
 
-const DB_DIR = join(process.cwd(), 'site-analytics')
+// Use environment variable for DB location, fallback to project directory
+const DB_DIR = process.env.ANALYTICS_DB_DIR || join(process.cwd(), 'site-analytics')
 const DB_PATH = join(DB_DIR, 'analytics.db')
 
 // Ensure the directory exists
