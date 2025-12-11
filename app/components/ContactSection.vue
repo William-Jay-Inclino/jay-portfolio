@@ -16,7 +16,7 @@
 
         <div class="grid md:grid-cols-3 gap-8 mb-12">
           <a 
-            href="mailto:your.email@example.com"
+            href="javascript:void(0);"
             class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all text-center"
           >
             <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
