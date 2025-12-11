@@ -24,13 +24,12 @@
           >
             View My Work
           </a>
-          <a 
-            href="/my_resume.pdf" 
-            target="_blank"
+          <button 
+            @click="isResumeModalOpen = true"
             class="px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-gray-700 rounded-lg font-semibold hover:border-blue-600 dark:hover:border-blue-500 transform hover:scale-105 transition-all"
           >
             View Resume
-          </a>
+          </button>
         </div>
         
         <div class="flex justify-center space-x-6 mt-12 animate-fade-in-delay">
@@ -52,11 +51,17 @@
         </div>
       </div>
     </div>
+    
+    <ResumeModal 
+      :is-open="isResumeModalOpen" 
+      @close="isResumeModalOpen = false" 
+    />
   </section>
 </template>
 
 
 <script setup lang="ts">
+const isResumeModalOpen = ref(false)
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId)
