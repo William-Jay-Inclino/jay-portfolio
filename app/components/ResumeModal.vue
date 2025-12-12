@@ -21,7 +21,7 @@
           <!-- PDF viewer -->
           <div class="flex-1 w-full h-full p-4 md:p-8" @click.stop>
             <iframe 
-              src="/portfolio/my_resume.pdf" 
+              src="/portfolio/my_resume_v2.pdf" 
               class="w-full h-full rounded-lg shadow-2xl"
               type="application/pdf"
             />
