@@ -28,7 +28,7 @@
           © {{ new Date().getFullYear() }} William Jay Inclino. Built with Nuxt.js & Tailwind CSS
         </p>
         <p class="text-gray-400 text-sm">
-          v1.0.0 - test4
+          v1.0.0 - test5
         </p>
       </div>
     </div>

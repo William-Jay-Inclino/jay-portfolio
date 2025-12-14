@@ -15,9 +15,9 @@ jobs:
 
       - name: Prepare SSH key
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
+          mkdir -p /home/runner/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > /home/runner/.ssh/deploy_key
+          chmod 600 /home/runner/.ssh/deploy_key
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -25,7 +25,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           port: ${{ secrets.SERVER_PORT }}
-          key_path: ~/.ssh/deploy_key
+          key_path: /home/runner/.ssh/deploy_key
           script: |
             cd ${{ secrets.APP_DIR }}
             git pull origin main
