@@ -27,6 +27,9 @@
         <p class="text-gray-400 text-sm">
           © {{ new Date().getFullYear() }} William Jay Inclino. Built with Nuxt.js & Tailwind CSS
         </p>
+        <p class="text-gray-400 text-sm">
+          v1.0.0
+        </p>
       </div>
     </div>
   </footer>
