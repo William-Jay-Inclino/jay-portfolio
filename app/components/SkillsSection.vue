@@ -48,7 +48,7 @@ const skills = [
   {
     title: 'DevOps & Tools',
     icon: '🚀',
-    items: ['Git', 'Docker', 'AWS', 'CI/CD', 'Linux', 'Nginx', 'Apache', 'PM2', 'Vercel', 'Github', 'Gitlab', 'Bitbucket']
+    items: ['Git', 'Docker', 'AWS', 'CI/CD', 'Github Actions', 'Linux', 'Nginx', 'PM2', 'Vercel']
   },
   {
     title: 'Mobile',
