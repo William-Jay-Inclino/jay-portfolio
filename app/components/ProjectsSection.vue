@@ -70,7 +70,7 @@ const projects = [
   },
   {
     title: 'PRISM Leyeco V',
-    description: 'Internal system for electric cooperative in Ormoc City, Leyte to manage their procurement process, warehouse & inventory, complaint & work order management, and fleet management.',
+    description: 'Internal system for electric cooperative in Ormoc City, Leyte to manage their procurement process, warehouse & inventory, complaint & work order management, and fleet management. Sample user — username: admin and password: admin123',
     technologies: ['Javascript', 'TypeScript', 'Vue.js', 'Nuxt.js', 'NodeJs', 'NestJS', 'PostgreSQL', 'Nginx', 'Docker', 'Linux', 'Playwright', 'GraphQL', 'Bootstrap'],
     gradient: 'from-orange-500 to-yellow-500',
     github: 'https://github.com/William-Jay-Inclino/lvis-monorepo',
@@ -99,6 +99,14 @@ const projects = [
     gradient: 'from-red-500 to-pink-500',
     github: 'https://github.com/William-Jay-Inclino/moneyflow',
     demo: 'https://jaytechsolutions.cloud/moneyflow-pwa/'
+  },
+  {
+    title: 'SimpleTask',
+    description: 'A simple task tracker geared for recruiters to manage daily work. Architecture is designed to be API-first backend with a separate frontend client. Sample user — email: charity@goteam.com and password: password',
+    technologies: ['Laravel 12', 'Nuxt 4', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Pinia'],
+    gradient: 'from-indigo-500 to-violet-500',
+    github: 'https://github.com/William-Jay-Inclino/simple-task',
+    demo: 'https://jaytechsolutions.cloud/simple-task/signin',
   },
 ]
 </script>
